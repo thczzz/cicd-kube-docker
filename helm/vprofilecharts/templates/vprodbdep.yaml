@@ -33,6 +33,7 @@ spec:
                   key: db-pass
       initContainers:
       - name: take-data-dir-ownership
+        image: alpine:3
         command:
         - chown
         - -R
