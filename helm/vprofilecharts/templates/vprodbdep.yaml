@@ -31,10 +31,20 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+      initContainers:
+      - name: take-data-dir-ownership
+        command:
+        - chown
+        - -R
+        - 999:999
+        - /var/lib/mysql
+        volumeMounts:
+        - name: vpro-db-data
+          mountPath: /var/lib/mysql
       nodeSelector:
         zone: us-east-1a
       volumes:
         - name: vpro-db-data
           awsElasticBlockStore:
-            volumeID: {{ .Values.dbvolumeID }}
+            volumeID: vol-0bac44eda15db3630
             fsType: ext4
