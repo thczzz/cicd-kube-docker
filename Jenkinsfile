@@ -8,7 +8,7 @@ pipeline {
     environment {
         registry           = "thczzz/vprofilecicd"
         registryCredential = 'dockerhub'
-        dbvolumeID         = 'vol-02cd849b4790c8e42'
+        dbvolumeID         = 'vol-0bac44eda15db3630'
     }
 
     stages{
