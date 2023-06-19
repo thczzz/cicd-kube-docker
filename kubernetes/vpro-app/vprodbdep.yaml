@@ -20,7 +20,7 @@ spec:
           securityContext:
             runAsUser: 999
           volumeMounts:
-            - mountPath: /var/lib/mysql
+            - mountPath: /db/data
               name: vpro-db-data
           ports:
             - name: vprodb-port
@@ -31,16 +31,6 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
-      initContainers:
-      - name: take-data-dir-ownership
-        command:
-        - chown
-        - -R
-        - 999:999
-        - /var/lib/mysql
-        volumeMounts:
-        - mountPath: /var/lib/mysql
-          name: vpro-db-data
       nodeSelector:
         zone: us-east-1a
       volumes:
