@@ -31,6 +31,13 @@ spec:
                 secretKeyRef:
                   name: app-secret
                   key: db-pass
+      initContainers:
+        - name: take-data-dir-ownership
+          command:
+          - chown
+          - -R
+          - 999:999
+          - /var/lib/mysql
       nodeSelector:
         zone: us-east-1a
       volumes:
